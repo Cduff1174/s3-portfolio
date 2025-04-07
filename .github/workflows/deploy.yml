@@ -17,7 +17,10 @@ jobs:
       with:
         ruby-version: 3.2.2
 
-    - name: Install dependencies
+    - name: Install latest Bundler
+      run: gem install bundler
+
+    - name: Install project dependencies
       run: bundle install
 
     - name: Deploy with Ruby script
