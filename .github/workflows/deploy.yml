@@ -16,11 +16,14 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.2.2
+        bundler-cache: false # prevent caching the old bundler
 
-    - name: Install latest Bundler
-      run: gem install bundler
+    - name: Remove old bundler and install latest
+      run: |
+        gem uninstall bundler -a -x || true
+        gem install bundler
 
-    - name: Install project dependencies
+    - name: Install dependencies with new Bundler
       run: bundle install
 
     - name: Deploy with Ruby script
